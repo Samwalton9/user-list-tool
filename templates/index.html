@@ -13,6 +13,9 @@
     <div>
         A tool for generating lists of editors on a wiki based on simple parameters.
     </div>
+    <div>
+        Finds editors matching the parameters who made at least one edit in the past 7 days.
+    </div>
     <form method="POST">
         <label for="database-input" class="form-label">Wiki database (required)</label>
         <input type="text" class="form-control" id="database-input" placeholder="frwiki" name="database">
@@ -20,8 +23,22 @@
         <input type="text" class="form-control" id="edit-count-min-input" name="edit-count-min">
         <label for="edit-count-max-input" class="form-label">Local edit count maximum</label>
         <input type="text" class="form-control" id="edit-count-max-input" name="edit-count-max">
+        <label for="account-age-min-input" class="form-label">Account age minimum (days)</label>
+        <input type="text" class="form-control" id="account-age-min-input" name="account-age-min">
+        <label for="account-age-max-input" class="form-label">Account age maximum (days)</label>
+        <input type="text" class="form-control" id="account-age-max-input" name="account-age-max">
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    {{ database }} {{ edit_count_min }} {{ edit_count_max }}
+    {% if query %}
+    <div>
+        Query: {{ query }}
+    </div>
+    {% endif %}
+    {% if user_list %}
+    <div>
+        <h2>Results</h2>
+        {{ user_list }}
+    </div>
+    {% endif %}
     </body>
 </html>
